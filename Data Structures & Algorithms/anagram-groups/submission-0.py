@@ -1,13 +1,11 @@
-from collections import defaultdict
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        hashmap = defaultdict(list)
-        result = []
-        for i in strs:
-            sorted_str = tuple(sorted(i))
-            hashmap[sorted_str].append(i)
-        
-        for value in hashmap.values():
-            result.append(value)
-        
-        return result
+      hashmap = defaultdict(list)
+
+      for s in strs:
+          count = [0] * 26
+          for c in s:
+           count[ord(c) - ord('a')] += 1
+          hashmap[tuple(count)].append(s)
+      
+      return list(hashmap.values())
