@@ -1,9 +1,16 @@
-from collections import defaultdict
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
-        sorted_s = sorted(s)
-        sorted_t = sorted(t)
-        if sorted_s == sorted_t:
-            return True
-        else:
-            return False
+       if len(s) != len(t):
+         return False
+      
+       hashmaps, hashmapt = {}, {}
+
+       for i in range(len(s)):
+         hashmaps[s[i]] = hashmaps.get(s[i], 0) + 1
+         hashmapt[t[i]] = hashmapt.get(t[i], 0) + 1
+
+       for i in hashmaps:
+         if hashmaps[i] != hashmapt.get(i, 0):
+          return False
+       
+       return True
