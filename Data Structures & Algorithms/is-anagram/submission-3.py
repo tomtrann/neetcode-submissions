@@ -1,16 +1,15 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
+        hashmap_s, hashmap_t = {}, {}
+
         if len(s) != len(t):
+          return False
+        
+        for i in range(len(s)): 
+          hashmap_s[s[i]] = hashmap_s.get(s[i], 0) + 1
+          hashmap_t[t[i]] = hashmap_t.get(t[i], 0) + 1
+
+        for c in hashmap_s:
+          if hashmap_s[c] != hashmap_t.get(c, 0):
             return False
-        
-        hashmaps = {}
-        hashmapt = {}
-        for i in range(len(s)):
-            hashmaps[s[i]] = hashmaps.get(s[i], 0) + 1
-            hashmapt[t[i]] = hashmapt.get(t[i], 0) + 1
-        
-        for c in hashmaps:
-            if hashmaps[c] != hashmapt.get(c, 0):
-                return False
-        
         return True
